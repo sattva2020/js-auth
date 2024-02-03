@@ -9,7 +9,7 @@ class FieldPassword {
     if (type === 'password') {
       input.setAttribute('type', 'text')
     } else {
-      input.setAttribute('type', 'password')
+      inputsetAttribute('type', 'password')
     }
   }
 }

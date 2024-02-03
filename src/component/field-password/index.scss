@@ -9,7 +9,7 @@
     position: relative;
 
     & .field__icon {
-      @include s.click;
+      @include s.click();
 
       display: block;
       height: 20px;
