@@ -33,16 +33,7 @@
   &:active {
     opacity:  0.3;
   }
-   &--disabled {
-    opacity: 0.5;
-    cursor: default;
 
-    &:hover,
-    &:active {
-      opacity: 0.5;
-      cursor: default;
-    }
-  }
 }
 
 .alert {
