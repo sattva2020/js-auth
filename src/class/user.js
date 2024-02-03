@@ -8,21 +8,22 @@ class User {
   static #list = []
 
   constructor({ email, password, role }) {
-    this.email = email
-    this.password = password
+    this.email = String(email).toLowerCase()
+    this.password = String(password)
     this.role = User.#convertRole(role)
+
   }
 
   static #convertRole = (role) => {
     role = Number(role)
 
     if (isNaN(role)) {
-      role = User.USER_ROLE.USER
+      role = this.USER_ROLE.USER
     }
 
-    role = Object.values(User.USER_ROLE).includes(role)
+    role = Object.values(this.USER_ROLE).includes(role)
       ? role
-      : User.USER_ROLE.USER
+      : this.USER_ROLE.USER
 
     return role
   }
@@ -30,23 +31,16 @@ class User {
   static create(data) {
     const user = new User(data)
 
-    // console.log(user)
+    console.log(user)
 
-    User.#list.push(user)
+    this.#list.push(user)
 
-    // console.log(this.#list)
+    console.log(this.#list)
 
     return user
   }
 
-  static getByEmail(email) {
-    return (
-      User.#list.find(
-        (user) =>
-          user.email === String(email).toLowerCase(),
-      ) || null
-    )
-  }
+  
 }
 
 module.exports = { User }
