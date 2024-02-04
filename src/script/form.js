@@ -1,5 +1,3 @@
-import { text } from "express"
-
 export const REG_EXP_EMAIL = new RegExp(
   /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/,
 )
@@ -108,6 +106,6 @@ export class Form {
 
     if (text) el.innerText = text
   }
-  
+
 }
 
