@@ -2,7 +2,7 @@ class FieldSelect {
   static toggle = (target) => {
     const options = target.nextElementSibling
 
-    options.toggleAtribute('active')
+    options.toggleAttribute('active')
 
     setTimeout(() => {
       window.addEventListener(
@@ -26,11 +26,11 @@ class FieldSelect {
 
     const active = list.querySelector('*[active]')
 
-    if (active) active.toggleAtribute('active')
+    if (active) active.toggleAttribute('active')
 
     // ===
 
-    target.toggleAtribute('active')
+    target.toggleAttribute('active')
 
     // ===
 
@@ -43,7 +43,7 @@ class FieldSelect {
 
     // ===
 
-    list.toggleAtribute('active')
+    list.toggleAttribute('active')
   }
 
 }

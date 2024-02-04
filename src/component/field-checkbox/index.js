@@ -1,6 +1,6 @@
 class FieldCheckbox {
   static toggle = (target) => {
-    target.toggleAtribute('active')
+    target.toggleAttribute('active')
   }
 }
 

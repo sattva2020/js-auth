@@ -11,6 +11,8 @@ class User {
     this.email = String(email).toLowerCase()
     this.password = String(password)
     this.role = User.#convertRole(role)
+
+    this.isConfirm = false
   }
 
   static #convertRole = (role) => {
@@ -30,13 +32,20 @@ class User {
   static create(data) {
     const user = new User(data)
 
-    // console.log(user)
+    console.log(user)
 
     this.#list.push(user)
 
-    // console.log(this.#list)
+    console.log(this.#list)
 
     return user
+  }
+
+  static getByEmail(email) {
+    return (
+      this.#list.find((user) => user.email === email) || 
+      null
+    )
   }
 }
 

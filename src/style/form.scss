@@ -34,6 +34,16 @@
     opacity:  0.3;
   }
 
+  &--disabled {
+    opacity: 0.5;
+    cursor: default;
+
+    &:hover,
+    &:active {
+      opacity: 0.5;
+      cursor: default;
+    }
+  } 
 }
 
 .alert {
@@ -48,7 +58,7 @@
     color: s.color(green);
   }
 
-   &--error {
+  &--error {
     border-color: s.color(red);
     color: s.color(red);
   }
@@ -58,7 +68,7 @@
     color: s.color(blue);
   }
 
-   &--disabled {
+  &--disabled {
     display: none;
   }
 }
