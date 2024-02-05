@@ -74,31 +74,29 @@ class SignupForm extends Form {
     } else {
       console.log(this.value)
 
-      this.setAlert('progress', 'Завантаження...')
+    this.setAlert('progress', 'Завантаження...')  
 
-      try {
-            const res = await fetch('/signup', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: this.convertData(),
-            })
+    try {
+      const res = await fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: this.convertData(),
+      })
+     
+      const data = await res.json()
 
-             const data = await res.json()
-
-        if (res.ok) {
-          this.setAlert('success', data.message)
-
-          saveSession(data.session)
-
-          location.assign('/')
-        } else {
-          this.setAlert('error', data.message)
-        }
-      } catch (error) {
-        this.setAlert('error', error.message)
+      if(res.ok) {
+        this.satAlert('success', data.message)
+      } else {
+        this.setAlert('error', data.message)
       }
+
+    } catch (error) {
+      this.setAlert('error', error.message)
+    }
+
     }
   }
 

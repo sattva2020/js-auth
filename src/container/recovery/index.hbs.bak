@@ -17,9 +17,8 @@
 				name="email" }}
 				<span name="email" class="form__error">Помилка</span>
 			</div>
-		</div>
 
-		<button onclick="recoveryForm.submit()" class="button button--disabled" type="button">Відновити пароль</button>
+		<button onclick="signupForm.submit()" class="button button--disabled" type="button">Отримати код</button>
 
         <span class="alert alert--disabled">Увага, помилка!</span>
     </form>
