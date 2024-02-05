@@ -53,7 +53,7 @@ class RecoveryForm extends Form {
         if (res.ok) {
           this.setAlert('success', data.message)
 
-
+          location.assign('/recovery-confirm')
         } else {
           this.setAlert('error', data.message)
         }

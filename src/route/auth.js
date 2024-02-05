@@ -221,8 +221,6 @@ router.post('/recovery-confirm', function (req, res) {
 
     console.log(user)
 
-    const session = Session.create(user)
-
     return res.status(200).json({
       message: 'Пароль змінено',
       session,
