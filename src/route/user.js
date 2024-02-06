@@ -1,51 +1,27 @@
-// Підключаємо роутер до бек-енду
+// Підключаємо технологію express для back-end сервера
 const express = require('express')
+// Cтворюємо роутер - місце, куди ми підключаємо ендпоїнти
 const router = express.Router()
 
+const { User } = require('../class/user')
+
 // ================================================================
 
 // router.get Створює нам один ентпоїнт
 
 // ↙️ тут вводимо шлях (PATH) до сторінки
-router.get('/', function (req, res) {
+router.get('/user-list', function (req, res) {
   // res.render генерує нам HTML сторінку
 
   // ↙️ cюди вводимо назву файлу з сontainer
-  res.render('index', {
+  return res.render('user-list', {
     // вказуємо назву контейнера
-    name: 'index',
+    name: 'user-list',
     // вказуємо назву компонентів
-    component: [],
+    component: ['back-button'],
 
     // вказуємо назву сторінки
-    title: 'Index page',
-    // ... сюди можна далі продовжувати додавати потрібні технічні дані, які будуть використовуватися в layout
-
-    // вказуємо дані,
-    data: {},
-  })
-  // ↑↑ сюди вводимо JSON дані
-})
-
-
-// ================================================================
-
-
-// router.get Створює нам один ентпоїнт
-
-// ↙️ тут вводимо шлях (PATH) до сторінки
-router.get('/home', function (req, res) {
-  // res.render генерує нам HTML сторінку
-
-  // ↙️ cюди вводимо назву файлу з сontainer
-  res.render('home', {
-    // вказуємо назву контейнера
-    name: 'home',
-    // вказуємо назву компонентів
-    component: [],
-
-    // вказуємо назву сторінки
-    title: 'Home page',
+    title: 'User list page',
     // ... сюди можна далі продовжувати додавати потрібні технічні дані, які будуть використовуватися в layout
 
     // вказуємо дані,
@@ -59,18 +35,43 @@ router.get('/home', function (req, res) {
 // router.get Створює нам один ентпоїнт
 
 // ↙️ тут вводимо шлях (PATH) до сторінки
-router.get('/logout', function (req, res) {
+router.get('/user-list-data', function (req, res) {
+  const list = User.getList()
+
+  console.log(list)
+
+  if (list.length === 0) {
+    return res.status(400).json({
+      message: 'Список користувачів порожній',
+    })
+  }
+
+  return res.status(200).json({
+    list: list.map(({ id, email, role }) => ({
+      id,
+      email,
+      role,
+    })),
+  })
+})
+
+// ================================================================
+
+// router.get Створює нам один ентпоїнт
+
+// ↙️ тут вводимо шлях (PATH) до сторінки
+router.get('/user-item', function (req, res) {
   // res.render генерує нам HTML сторінку
 
   // ↙️ cюди вводимо назву файлу з сontainer
-  res.render('logout', {
+  return res.render('user-item', {
     // вказуємо назву контейнера
-    name: 'hologoutme',
+    name: 'user-item',
     // вказуємо назву компонентів
-    component: [],
+    component: ['back-button'],
 
     // вказуємо назву сторінки
-    title: 'Logout page',
+    title: 'User item page',
     // ... сюди можна далі продовжувати додавати потрібні технічні дані, які будуть використовуватися в layout
 
     // вказуємо дані,
@@ -79,19 +80,39 @@ router.get('/logout', function (req, res) {
   // ↑↑ сюди вводимо JSON дані
 })
 
+// ================================================================
+
+// router.get Створює нам один ентпоїнт
+
+// ↙️ тут вводимо шлях (PATH) до сторінки
+router.get('/user-item-data', function (req, res) {
+  const { id } = req.query
+
+  if (!id) {
+    return res.status(400).json({
+      message: 'Потрібно передати ID користувача',
+    })
+  }
+
+  const user = User.getById(Number(id))
+
+  if (!user) {
+    return res.status(400).json({
+      message: 'Користувач з таким ID не існує',
+    })
+  }
+
+  return res.status(200).json({
+    user: {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+      isConfirm: user.isConfirm,
+    },
+  })
+})
 
 // ================================================================
 
-// Підключіть файли роутів
-const auth = require('./auth')
-// Підключіть інші файли роутів, якщо є
-const user = require('./user')
-
-// Об'єднайте файли роутів за потреби
-router.use('/', auth)
-router.use('/', user)
-
-// Використовуйте інші файли роутів, якщо є
-
-// Експортуємо глобальний роутер
+// Підключаємо роутер до бек-енду
 module.exports = router

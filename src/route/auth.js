@@ -334,7 +334,7 @@ router.get('/login', function (req, res) {
     // вказуємо назву контейнера
     name: 'login',
     // вказуємо назву компонентів
-    component: ['back-button', 'field', 'field - password'],
+    component: ['back-button', 'field', 'field-password'],
 
     // вказуємо назву сторінки
     title: 'Login page',

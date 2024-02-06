@@ -9,7 +9,6 @@ class Session {
       isConfirm: user.isConfirm,
       role: user.role,
       id: user.id,
-      id: user.id,
     }
   }
 

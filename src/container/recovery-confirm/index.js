@@ -12,7 +12,6 @@ class SignupConfirmForm extends Form {
   FIELD_ERROR = {
     IS_EMPTY: 'Введіть значення в поле',
     IS_BIG: 'Дуже довге значення, приберіть зайве',
-    'Ваш другий пароль не збігається з першим',
   }
 
   validate = (name, value) => {
